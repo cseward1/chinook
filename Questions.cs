@@ -67,7 +67,18 @@ Title ="Sales Support Agent"
 
 // invoice_totals.sql: Provide a query that shows the Invoice Total, Customer name, Country and Sale Agent name for all invoices and customers.
 // Need a join table for three joins?
+
 // total_invoices_{year}.sql: How many Invoices were there in 2009 and 2011?
+SELECT
+ Total,
+ InvoiceDate
+ FROM
+ Invoice
+ where
+ strftime("%Y", InvoiceDate) = "2009"
+ OR
+ strftime("%Y", InvoiceDate) = "2011"
+
 
 // total_sales_{year}.sql: What are the respective total sales for each of those years?
 

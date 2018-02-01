@@ -1,7 +1,162 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="/Users/courtneyseward/workspace/chinook/Chinook_Sqlite.sqlite" foreign_keys="1"/><window><current_tab id="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="4241"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="Album"/><default_encoding codec=""/><browsetable_info data="AAAAAA=="/></tab_browse><tab_sql><sql name="SQL 1">SELECT * FROM Genre;
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="/Users/courtneyseward/workspace/chinook/Chinook_Sqlite.sqlite" foreign_keys="1"/><window><current_tab id="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="4241"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="Invoice"/><default_encoding codec=""/><browsetable_info data="AAAABQAAABYASQBuAHYAbwBpAGMAZQBMAGkAbgBlAAAAAAAAAAAAAAAAAAAAAAAAAAAA//////////8AAAAA/////wAAAA4ASQBuAHYAbwBpAGMAZQAAAAMAAAAAAAAAAQAAAAgAAABnAAAAAAAAAAAA//////////8AAAAA/////wAAABAARQBtAHAAbABvAHkAZQBlAAAABAAAAAAAAAAAAAAAAAAAAAAA//////////8AAAAA/////wAAABAAQwB1AHMAdABvAG0AZQByAAAAAAAAAAAAAAAAAAAAAAAAAAAA//////////8AAAAA/////wAAAAoAQQBsAGIAdQBtAAAAAAAAAAAAAAAAAAAAAAAAAAAA//////////8AAAAA/////w=="/></tab_browse><tab_sql><sql name="SQL 1">SELECT * FROM Genre;
+
+SELECT* FROM Artist;
+
+INSERT INTO Artist
+(ArtistName, YearEstablished)
+VALUES
+('Snoopdoggy', 2017);
+
+
+SELECT * FROM Artist;
+
+SELECT * FROM Album;
+
+INSERT INTO Album 
+(Title, ReleaseDate, AlbumLength, Label, ArtistId, GenreId)
+VALUES
+('SnoopDogAlbum', 2012, 112, 'Sony', 28, 13 );
+
+SELECT * FROM Song;
+	
+INSERT INTO SONG
+(Title, SongLength, ReleaseDate, GenreId, ArtistID, AlbumId)
+VALUES
+('The Snoop Dog Song', 345, 'January 12th, 29012', 13, 28, 23 );
+
+SELECT * FROM Song, Album;
+SELECT a.Title, s.Title FROM Song s LEFT JOIN Album a ON s.AlbumId = a.AlbumId
+WHERE a.Title = 'SnoopDogAlbum';
+
+
+SELECT
+Albumid,
+ count(*)
+FROM
+Song
+GROUP BY
+ albumid;
+ 
+SELECT
+ArtistId,
+count(*)
+FROM
+Song
+GROUP BY
+ArtistId;
+
+SELECT
+GenreId,
+count(*)
+FROM
+Song
+GROUP BY
+GenreId;	
+
+SELECT
+Album
+MAX(length)
+FROM
+ Album
+SELECT
+ (Album, length);
+
+ SELECT
+ Album.Title,
+ Album.AlbumLength
+ FROM
+ Album
+ WHERE 
+ AlbumLength = (SELECT max(AlbumLength) FROM Album);
+
+SELECT s.Title, a.Title, MAX(s.SongLength)
+FROM Song s
+LEFT JOIN Album a
+ON s.AlbumId = a.AlbumId;
+
+ 
+</sql><sql name="SQL 1">SELECT 
+FirstName, 
+LastName,
+CustomerId, 
+Country
+from
+Customer
+Where 
+Country != &quot;USA&quot;
+
+
+select
+FirstName, 
+LastName,
+CustomerId, 
+Country 
+from
+Customer
+where
+Country = &quot;Brazil&quot;
+
+
+
+SELECT
+Customer. FirstName,
+Customer.LastName,
+Invoice.InvoiceId, 
+Invoice.BillingCountry
+from
+Customer
+INNER JOIN Invoice ON Invoice.CustomerID = Customer.CustomerId
+where
+Country = &quot;Brazil&quot;
+
+Select 
+Title,
+FirstName,
+LastName
+from
+Employee
+where 
+Title = &quot;Sales Support Agent&quot;
+
+
+SELECT DISTINCT
+BillingCountry
+from
+Invoice;
+
+
+SELECT
+Employee.Title,
+Invoice.InvoiceId, 
+Invoice.BillingCountry
+from
+Customer
+INNER JOIN Invoice ON Invoice.CustomerID = Customer.CustomerId
+where
+Title =&quot;Sales Support Agent&quot;
 
 
 
 
+ SELECT
+ Total,
+ InvoiceDate
+ FROM
+ Invoice
+ where
+ strftime(&quot;%Y&quot;, InvoiceDate) = &quot;2009&quot;
+ OR
+ strftime(&quot;%Y&quot;, InvoiceDate) = &quot;2011&quot;
+ 
+ // total_sales_{year}.sql: What are the respective total sales for each of those years?
+ 
+ SELECT
+ Total,
+ FROM
+ Invoice
+ where
+ strftime(&quot;%Y&quot;, Total) = &quot;2009&quot;
+ OR
+ strftime(&quot;%Y&quot;, ITotal) = &quot;2011&quot;
 
  </sql><current_tab id="1"/></tab_sql></sqlb_project>
