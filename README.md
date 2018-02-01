@@ -1,0 +1,5 @@
+# chinook
+SQLite Practice
+
+# ERD 
+
