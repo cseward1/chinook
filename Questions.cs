@@ -10,7 +10,6 @@ WHERE
 Country != "USA"
 
 // brazil_customers.sql: Provide a query only showing the Customers from Brazil.
-
 SELECT
 FirstName, 
 LastName,
@@ -23,7 +22,6 @@ Country = "Brazil"
 
 
 // brazil_customers_invoices.sql: Provide a query showing the Invoices of customers who are from Brazil. The resultant table should show the customer's full name, Invoice ID, Date of the invoice and billing country.
-
 SELECT
 Customer. FirstName,
 Customer.LastName,
@@ -36,13 +34,39 @@ where
 Country = "Brazil"
 
 // sales_agents.sql: Provide a query showing only the Employees who are Sales Agents.
+Select 
+Title,
+FirstName,
+LastName
+from
+Employee
+where 
+Title = "Sales Support Agent"
+
+
+
 
 // unique_invoice_countries.sql: Provide a query showing a unique/distinct list of billing countries from the Invoice table.
+SELECT DISTINCT
+BillingCountry
+from
+Invoice;
+
 
 // sales_agent_invoices.sql: Provide a query that shows the invoices associated with each sales agent. The resultant table should include the Sales Agent's full name.
+// Having Problems with this one - will come back to it 
+SELECT
+Employee.Title,
+Invoice.InvoiceId, 
+Invoice.BillingCountry
+from
+Customer
+INNER JOIN Invoice ON Invoice.CustomerID = Customer.CustomerId
+where
+Title ="Sales Support Agent"
 
 // invoice_totals.sql: Provide a query that shows the Invoice Total, Customer name, Country and Sale Agent name for all invoices and customers.
-
+// Need a join table for three joins?
 // total_invoices_{year}.sql: How many Invoices were there in 2009 and 2011?
 
 // total_sales_{year}.sql: What are the respective total sales for each of those years?
