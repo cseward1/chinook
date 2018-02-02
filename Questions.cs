@@ -65,6 +65,11 @@ INNER JOIN Invoice ON Invoice.CustomerID = Customer.CustomerId
 where
 Title ="Sales Support Agent"
 
+
+
+
+select * from Employee where Title = 'Sales Support Agent'
+
 // invoice_totals.sql: Provide a query that shows the Invoice Total, Customer name, Country and Sale Agent name for all invoices and customers.
 // Need a join table for three joins?
 
@@ -81,8 +86,33 @@ SELECT
 
 
 // total_sales_{year}.sql: What are the respective total sales for each of those years?
+// strftime is asking for just the yeat with the %Y 
+// its totaling up
+ SELECT
+ Total (Invoice.Total) 
+ AS
+ "Total Sales"
+ FROM
+ Invoice
+ where
+ strftime("%Y", InvoiceDate) = "2009"
+ OR
+ strftime("%Y", InvoiceDate) = "2011"
+
 
 // invoice_37_line_item_count.sql: Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for Invoice ID 37.
+select 
+i.InvoiceId,
+count(li.InvoiceLineId) LineItems
+from Invoice i, InvoiceLine li 
+where li.InoviceId = i.InvoiceId
+groupBy i.InvoiceI
+dorder by LineItems desc
+limit 1
+
+;
+
+
 
 // line_items_per_invoice.sql: Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for each Invoice. HINT: GROUP BY
 
@@ -101,12 +131,40 @@ SELECT
 // sales_agent_total_sales.sql: Provide a query that shows total sales made by each sales agent.
 
 // top_2009_agent.sql: Which sales agent made the most in sales in 2009?
+// Steves answer to use as a guide:
+select
+max(Sales.TotalSales) as TopSales,
+Sales.EmployeeName
+from
+(select
+sum(i.Total) TotalSales,
+e.FirstName || ' ' || e.LastName as EmployeeName,
+strftime ('%Y', i.InvoiceDate) as InvoiceYear
+from Invoice i, Employee e ,Customer c
+    where i.CustomerId = c.CustomerId
+    and  c.SupportRepId =e.EmployeeId
+    and InvocieYear = '2009'
+    group by EmployeeName
+    order by TotalSales desc) Sales
+    ;
+
+
 
 // Hint: Use the MAX function on a subquery.
 
 // top_agent.sql: Which sales agent made the most in sales over all?
 
+
+
 // sales_agent_customer_count.sql: Provide a query that shows the count of customers assigned to each sales agent.
+// Steves Answer to use as a guide:
+select e.FirstName || ' ' || e.LastName as EmployeeName,
+count (c.CustomerId)
+from Employee e
+join Customer c on c.SupportRepId =e.EmployeeId
+group by EmployeeName
+;
+
 
 // sales_per_country.sql: Provide a query that shows the total sales per country.
 
@@ -115,7 +173,15 @@ SELECT
 // top_2013_track.sql: Provide a query that shows the most purchased track of 2013.
 
 // top_5_tracks.sql: Provide a query that shows the top 5 most purchased songs.
-
+// Steves answer / use as notes for other problems
+// if you have an aggregate function that means you need a groupby statement
+select t.Name, count(t.Name) PurchaseCount
+from Track t
+join InvoiceLine 1 on 1.Track.Id = t.TrackId
+group by t.Name
+order by PurchaseCount desc
+limit 5
+;
 // top_3_artists.sql: Provide a query that shows the top 3 best selling artists.
 
 // top_media_type.sql: Provide a query that shows the most purchased Media Type.
