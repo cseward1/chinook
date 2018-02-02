@@ -1,3 +1,17 @@
+// What to Keep Studying:
+
+// The following are the most commonly used SQL aggregate functions:
+// AVG – calculates the average of a set of values.
+// COUNT – counts rows in a specified table or view.
+// MIN – gets the minimum value in a set of values.
+// MAX – gets the maximum value in a set of values.
+// SUM – calculates the sum of values.
+
+// LOOK UP:
+// Sub-select
+// Querying tables within tables:
+// wrap it in a sub query, name the new query, and wrap the first query in parentheses
+
 // non_usa_customers.sql: Provide a query showing Customers (just their full names, customer ID and country) who are not in the US.
 SELECT 
 FirstName, 
