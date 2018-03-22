@@ -22,6 +22,7 @@ FROM
 Customer
 WHERE 
 Country != "USA"
+Where
 
 // brazil_customers.sql: Provide a query only showing the Customers from Brazil.
 SELECT
@@ -123,10 +124,7 @@ where li.InoviceId = i.InvoiceId
 groupBy i.InvoiceI
 dorder by LineItems desc
 limit 1
-
 ;
-
-
 
 // line_items_per_invoice.sql: Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for each Invoice. HINT: GROUP BY
 
